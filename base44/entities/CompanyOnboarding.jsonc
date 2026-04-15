@@ -1,0 +1,89 @@
+{
+  "name": "CompanyOnboarding",
+  "type": "object",
+  "properties": {
+    "company_name": {
+      "type": "string",
+      "description": "Name of the company"
+    },
+    "contact_person": {
+      "type": "string",
+      "description": "Primary contact person"
+    },
+    "role_title": {
+      "type": "string",
+      "description": "Role or title of contact person"
+    },
+    "email": {
+      "type": "string",
+      "description": "Business email"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Business phone"
+    },
+    "service_category": {
+      "type": "string",
+      "enum": [
+        "passenger_transport",
+        "workforce_transport",
+        "logistics_delivery",
+        "contract_routes",
+        "mixed_services",
+        "other"
+      ],
+      "description": "Primary service category needed"
+    },
+    "expected_frequency": {
+      "type": "string",
+      "enum": [
+        "daily",
+        "weekly",
+        "biweekly",
+        "monthly",
+        "as_needed",
+        "project_based"
+      ],
+      "description": "Expected service frequency"
+    },
+    "service_geography": {
+      "type": "string",
+      "description": "Primary service area or regions"
+    },
+    "timing_windows": {
+      "type": "string",
+      "description": "Preferred timing or scheduling windows"
+    },
+    "estimated_monthly_volume": {
+      "type": "string",
+      "description": "Estimated monthly service volume"
+    },
+    "special_handling": {
+      "type": "string",
+      "description": "Special handling or compliance needs"
+    },
+    "comments": {
+      "type": "string",
+      "description": "Additional comments"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "submitted",
+        "under_review",
+        "consultation_scheduled",
+        "onboarding",
+        "active",
+        "declined"
+      ],
+      "default": "submitted",
+      "description": "Onboarding status"
+    }
+  },
+  "required": [
+    "company_name",
+    "contact_person",
+    "email",
+    "service_category"
+  ]
+}

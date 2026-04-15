@@ -1,0 +1,49 @@
+{
+  "name": "ContactInquiry",
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Full name"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "inquiry_type": {
+      "type": "string",
+      "enum": [
+        "general",
+        "service_inquiry",
+        "business_onboarding",
+        "partnership",
+        "support",
+        "other"
+      ],
+      "description": "Type of inquiry"
+    },
+    "message": {
+      "type": "string",
+      "description": "Inquiry message"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "responded",
+        "resolved"
+      ],
+      "default": "new",
+      "description": "Inquiry status"
+    }
+  },
+  "required": [
+    "name",
+    "email",
+    "message"
+  ]
+}

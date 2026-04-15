@@ -1,0 +1,83 @@
+{
+  "name": "ServiceRequest",
+  "type": "object",
+  "properties": {
+    "contact_name": {
+      "type": "string",
+      "description": "Full name of the requester"
+    },
+    "company": {
+      "type": "string",
+      "description": "Company or organization name"
+    },
+    "phone": {
+      "type": "string",
+      "description": "Phone number"
+    },
+    "email": {
+      "type": "string",
+      "description": "Email address"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "passenger_transport",
+        "workforce_transport",
+        "medical_delivery",
+        "package_delivery",
+        "contract_route",
+        "business_solutions",
+        "other"
+      ],
+      "description": "Type of service requested"
+    },
+    "pickup_location": {
+      "type": "string",
+      "description": "Pickup address or location"
+    },
+    "destination": {
+      "type": "string",
+      "description": "Destination address or location"
+    },
+    "preferred_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Preferred service date"
+    },
+    "preferred_time": {
+      "type": "string",
+      "description": "Preferred time window"
+    },
+    "is_recurring": {
+      "type": "boolean",
+      "default": false,
+      "description": "Whether this is a recurring service need"
+    },
+    "estimated_volume": {
+      "type": "string",
+      "description": "Estimated service volume or frequency"
+    },
+    "notes": {
+      "type": "string",
+      "description": "Additional notes or requirements"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "new",
+        "reviewing",
+        "quoted",
+        "confirmed",
+        "completed",
+        "cancelled"
+      ],
+      "default": "new",
+      "description": "Current status of the request"
+    }
+  },
+  "required": [
+    "contact_name",
+    "email",
+    "service_type"
+  ]
+}
