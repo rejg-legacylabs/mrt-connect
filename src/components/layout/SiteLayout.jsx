@@ -2,6 +2,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from './Navbar';
 import Footer from './Footer';
+import AppAssistant from '@/components/ai/AppAssistant';
 
 export default function SiteLayout() {
   return (
@@ -11,6 +12,7 @@ export default function SiteLayout() {
         <Outlet />
       </main>
       <Footer />
+      <AppAssistant />
     </div>
   );
 }
