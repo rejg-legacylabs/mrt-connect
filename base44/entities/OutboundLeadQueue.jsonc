@@ -1,0 +1,78 @@
+{
+  "name": "OutboundLeadQueue",
+  "type": "object",
+  "description": "Queue of lead-forward attempts that failed and need retry. Drained by retryFailedLeadForwards on a schedule.",
+  "properties": {
+    "source_lead_entity_type": {
+      "type": "string",
+      "enum": [
+        "ServiceRequest",
+        "CompanyOnboarding",
+        "ContactInquiry"
+      ],
+      "description": "Originating entity type on this website"
+    },
+    "source_lead_entity_id": {
+      "type": "string",
+      "description": "ID of the lead record on this website"
+    },
+    "target_app": {
+      "type": "string",
+      "enum": [
+        "mission-ready-transport-mrt"
+      ],
+      "description": "Target ops app slug receiving the forwarded lead"
+    },
+    "payload": {
+      "type": "object",
+      "description": "Exact JSON payload that was POSTed (or attempted) to the ops app"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in_progress",
+        "succeeded",
+        "dead"
+      ],
+      "default": "pending",
+      "description": "Retry status. dead = exceeded max attempts, requires manual intervention."
+    },
+    "attempts": {
+      "type": "integer",
+      "default": 0,
+      "description": "Number of attempts so far"
+    },
+    "last_error": {
+      "type": "string",
+      "description": "Error message from the most recent failed attempt"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "description": "UUID used as idempotency key on the ops app — same value reused across retries so the ops side dedupes."
+    },
+    "next_attempt_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Earliest time the next retry should run (exponential backoff)"
+    }
+  },
+  "required": [
+    "source_lead_entity_type",
+    "source_lead_entity_id",
+    "target_app",
+    "payload",
+    "idempotency_key"
+  ],
+  "rls": {
+    "read": {
+      "$or": [
+        { "created_by": "{{user.email}}" },
+        { "user_condition": { "role": "admin" } }
+      ]
+    },
+    "write": {
+      "user_condition": { "role": "admin" }
+    }
+  }
+}

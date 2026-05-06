@@ -1,0 +1,61 @@
+{
+  "name": "AuditLog",
+  "type": "object",
+  "description": "Append-only audit trail for cross-app integrations and other security-sensitive actions on this website.",
+  "properties": {
+    "action_type": {
+      "type": "string",
+      "enum": [
+        "lead_forward_attempt",
+        "lead_forward_success",
+        "lead_forward_failure",
+        "lead_forward_retry",
+        "lead_forward_dead"
+      ],
+      "description": "What happened"
+    },
+    "entity_type": {
+      "type": "string",
+      "description": "Originating lead entity type (e.g. ServiceRequest)"
+    },
+    "entity_id": {
+      "type": "string",
+      "description": "Originating lead record ID"
+    },
+    "target_app": {
+      "type": "string",
+      "description": "Target app slug (e.g. mission-ready-transport-mrt)"
+    },
+    "success": {
+      "type": "boolean",
+      "description": "Whether the action succeeded"
+    },
+    "error": {
+      "type": "string",
+      "description": "Error message if success=false"
+    },
+    "latency_ms": {
+      "type": "integer",
+      "description": "Round-trip latency in milliseconds for the outbound call"
+    },
+    "idempotency_key": {
+      "type": "string",
+      "description": "Idempotency key associated with the operation, for cross-app correlation"
+    },
+    "http_status": {
+      "type": "integer",
+      "description": "HTTP status returned by the target endpoint (if any)"
+    }
+  },
+  "required": [
+    "action_type"
+  ],
+  "rls": {
+    "read": {
+      "user_condition": { "role": "admin" }
+    },
+    "write": {
+      "user_condition": { "role": "admin" }
+    }
+  }
+}

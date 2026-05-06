@@ -35,7 +35,18 @@ export default function BookService() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.ServiceRequest.create(form);
+    const created = await base44.entities.ServiceRequest.create(form);
+    // Forward to MRT ops app (fire-and-forget; failures are queued + audited server-side)
+    try {
+      await base44.functions.forwardLeadToOps({
+        source: 'BookService',
+        record_id: created?.id,
+        fields: form,
+      });
+    } catch (err) {
+      // Visitor should not see ops-routing errors — lead is captured locally.
+      console.error('forwardLeadToOps failed (non-blocking):', err);
+    }
     setSubmitting(false);
     setSubmitted(true);
     toast.success('Service request submitted successfully!');

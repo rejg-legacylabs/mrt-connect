@@ -29,7 +29,16 @@ export default function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.ContactInquiry.create(form);
+    const created = await base44.entities.ContactInquiry.create(form);
+    try {
+      await base44.functions.forwardLeadToOps({
+        source: 'Contact',
+        record_id: created?.id,
+        fields: form,
+      });
+    } catch (err) {
+      console.error('forwardLeadToOps failed (non-blocking):', err);
+    }
     setSubmitting(false);
     setSubmitted(true);
     toast.success('Message sent successfully!');

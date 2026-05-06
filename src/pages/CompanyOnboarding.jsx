@@ -47,7 +47,16 @@ export default function CompanyOnboarding() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
-    await base44.entities.CompanyOnboarding.create(form);
+    const created = await base44.entities.CompanyOnboarding.create(form);
+    try {
+      await base44.functions.forwardLeadToOps({
+        source: 'CompanyOnboarding',
+        record_id: created?.id,
+        fields: form,
+      });
+    } catch (err) {
+      console.error('forwardLeadToOps failed (non-blocking):', err);
+    }
     setSubmitting(false);
     setSubmitted(true);
     toast.success('Onboarding request submitted!');
