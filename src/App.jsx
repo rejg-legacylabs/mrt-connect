@@ -17,6 +17,7 @@ import Technology from '@/pages/Technology';
 import BookService from '@/pages/BookService';
 import CompanyOnboarding from '@/pages/CompanyOnboarding';
 import Contact from '@/pages/Contact';
+import FleetManagement from '@/pages/FleetManagement';
 
 const AuthenticatedApp = () => {
   const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
@@ -56,6 +57,7 @@ const AuthenticatedApp = () => {
         <Route path="/book-service" element={<BookService />} />
         <Route path="/company-onboarding" element={<CompanyOnboarding />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/fleet" element={<FleetManagement />} />
       </Route>
       <Route path="*" element={<PageNotFound />} />
     </Routes>
