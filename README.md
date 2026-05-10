@@ -1,39 +1,43 @@
-**Welcome to your Base44 project** 
+# MRT Connect — Transport App
 
-**About**
+**A REJG Legacy Labs LLC product | Operated by Mission Ready Transport LLC**
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+MRT Connect is the internal operations platform for Mission Ready Transport — a premium transportation and logistics company serving HOH Foundation residents AND outside clients including government agencies, courts, treatment programs, and hospitals.
 
-This project contains everything you need to run your app locally.
+## Ownership & Licensing
+- **IP Owner:** REJG Legacy Labs LLC (subsidiary of RE Jones Global LLC)
+- **Operator:** Mission Ready Transport LLC (subsidiary of RE Jones Global LLC)
+- **Contact:** rodney@rejonesglobal.com | 512-541-2395
+- **Address:** 5900 Balcones Drive, Suite 100, Austin, TX 78731
 
-**Edit the code in your local development environment**
+## Platform Features
+- Trip dispatch and scheduling
+- Fleet and vehicle management
+- Driver logs and inspections
+- Outside Client Contracts (non-HOH clients)
+- Document templates: Service Agreement, Trip Invoice, Driver Log, Vehicle Inspection, Client Onboarding
+- Financial reporting
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+## Ecosystem Sync Schedule
+| Time (CT) | From | To | Data |
+|-----------|------|----|------|
+| 6:15 AM | MRT Connect | Command Center Finance | Trip revenue, expenses, fleet metrics |
+| 6:20 AM | MRT Connect | Pathways Hub OS | Available vehicles, HOH trip capacity |
 
-**Prerequisites:** 
-
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
-
+## Development
+```bash
+git clone https://github.com/rejg-legacylabs/mrt-connect
+cd mrt-connect
+npm install
+cp .env.example .env.local
+npm run dev
 ```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
 
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
+Set in `.env.local`:
+```
+VITE_BASE44_APP_ID=69df258aeba93e4d9f3e697a
+VITE_BASE44_APP_BASE_URL=https://mrt-connect.base44.app
 ```
 
-Run the app: `npm run dev`
-
-**Publish your changes**
-
-Open [Base44.com](http://Base44.com) and click on Publish.
-
-**Docs & Support**
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+---
+Built on [Base44](https://base44.com) | REJG Legacy Labs LLC | Mission Ready Transport LLC | RE Jones Global LLC | May 2026
